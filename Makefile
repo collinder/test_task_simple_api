@@ -28,6 +28,9 @@ alembic_gen: startpd
 alembic_upgrade: startpd
 	docker-compose run --rm backend alembic upgrade head
 
+alembic_down: startpd
+	docker-compose run --rm backend alembic downgrade base
+
 shell:
 	docker compose exec backend /bin/bash
 
@@ -39,3 +42,5 @@ guni: down startpd
 
 test: down startpd
 	docker-compose run --rm backend pytest tests/test.py -v -s
+
+	
