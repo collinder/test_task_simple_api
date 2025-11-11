@@ -22,11 +22,11 @@ config:
 delete:
 	docker-compose down --volumes
 
-alembic_gen:
-	alembic --config ./web/alembic.ini revision --autogenerate
+alembic_gen: startpd
+	docker-compose run --rm backend alembic revision --autogenerate
 
-alembic_upgrade:
-	alembic --config ./web/alembic.ini upgrade head
+alembic_upgrade: startpd
+	docker-compose run --rm backend alembic upgrade head
 
 shell:
 	docker compose exec backend /bin/bash
