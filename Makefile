@@ -1,3 +1,6 @@
+init: startpd
+	docker compose up
+
 start:
 	docker compose up
 
