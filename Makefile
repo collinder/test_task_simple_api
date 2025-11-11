@@ -1,20 +1,20 @@
+down: 
+	docker compose down
+
 init: startpd
 	docker compose up
 
-start:
+start: down
 	docker compose up
 
-startd:
+startd: down
 	docker compose up -d
 
-startpd:
+startpd: down
 	docker compose up postgres -d 
 
-startp:
+startp: down
 	docker compose up postgres
-
-down:
-	docker compose down
 
 config:
 	docker compose config
@@ -30,6 +30,9 @@ alembic_upgrade: startpd
 
 alembic_down: startpd
 	docker-compose run --rm backend alembic downgrade base
+
+alembic_h: startpd
+	docker-compose run --rm backend alembic history
 
 shell:
 	docker compose exec backend /bin/bash
